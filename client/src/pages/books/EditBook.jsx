@@ -17,8 +17,10 @@ const EditBook = () => {
     const [image, setImage] = useState("")
     const [thumbnail, setThumbnail] = useState(null)
         
+        const local = "http://localhost:8000"
+        const base_url = "https://book-mern-api.onrender.com"
         const paramSlug = useParams();
-        const url = `http://localhost:8000/api/book/${paramSlug.slug}`;
+        const url = `${base_url}/api/book/${paramSlug.slug}`;
 
         const fetchData = async() => {
                 
@@ -69,9 +71,9 @@ const EditBook = () => {
                 // title, slug, stars, description, thumbnail
                 try {
                 
-                    const response = await axios.put("http://localhost:8000/api/book", formData);
+                    const response = await axios.put(`${base_url}/api/book`, formData);
 
-                    if(response.statusText == "OK"){
+                    if(response.status === 200){
                     setSlug("")
                     setTitle("") 
                     console.log("Added Book!");
@@ -91,7 +93,7 @@ const EditBook = () => {
 
             try {
                 //we alr have bookId in the start 
-                const response = await axios.delete(`http://localhost:8000/api/book/${bookId}`);
+                const response = await axios.delete(`${base_url}/api/book/${bookId}`);
 
                 if(response.status === 200){
                     console.log("Book removed!");
@@ -120,7 +122,7 @@ const EditBook = () => {
                 ? 
                 <img src={image} alt='noIMG' className='h-[360px] w-[280px] object-cover rounded-xl max-sm:ml-[50%] max-sm:-translate-x-[50%] sm:mr-60'/>
                 :
-                <img src={`http://localhost:8000/uploads/${thumbnail}`} alt='noIMG' className='h-[360px] w-[280px] object-cover rounded-xl max-sm:ml-[50%] max-sm:-translate-x-[50%] sm:mr-60'/>
+                <img src={`${base_url}/uploads/${thumbnail}`} alt='noIMG' className='h-[360px] w-[280px] object-cover rounded-xl max-sm:ml-[50%] max-sm:-translate-x-[50%] sm:mr-60'/>
                 }
                 <input onChange={onImageChange} type="file" accept='image/gif, image/jpeg, image/png' className='mt-5 max-sm:ml-[5rem]'/>
             </div>

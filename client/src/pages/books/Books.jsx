@@ -10,7 +10,8 @@ const Books = () => {
     const [error, setError] = useState(null);
     const [categories, setCategories] = useState("");
     
-    let base_url = 'http://localhost:8000';
+    let local = 'http://localhost:8000';
+    let base_url = 'https://book-mern-api.onrender.com';
     
     const fetchData = async() => {
         try {
@@ -74,7 +75,7 @@ const Books = () => {
                         <li key={index}>
                             <Link to={`/book/${book.slug}`}>
                                 <div className='h-[480px] max-sm:w-[260px] flex-1 bg-gray-500 bg-opacity-40 shadow-2xl cursor-pointer hover:bg-opacity-50 hover:scale-105 transition-all duration-150 ease-in rounded-lg px-3 py-6 flex flex-col items-start justify-center gap-2'>
-                                    <img src={`http://localhost:8000/uploads/${book.thumbnail}`} alt="" className='rounded-lg w-[260px] h-[90%] object-cover'/>
+                                    <img src={`${base_url}/uploads/${book.thumbnail}`} alt="" className='rounded-lg w-[260px] h-[90%] object-cover'/>
                                     <p className='flex items-center justify-center gap-1 ml-2'><AiFillStar className='w-5 h-5'/> <span>({book.stars})</span></p>
                                     <h1 className='font-semibold pl-2'>{book.title}</h1>
                                 </div>

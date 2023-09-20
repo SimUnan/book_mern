@@ -10,19 +10,21 @@ const SingleBook = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     
-    const hostUrl = 'http://localhost:8000';
+    const local = 'http://localhost:8000';
+    const base_url = 'https://book-mern-api.onrender.com';
     const urlSlug = useParams();
-    const baseUrl = `http://localhost:8000/api/book/${urlSlug.slug}`;
+    const url = `${base_url}/api/book/${urlSlug.slug}`;
 
     const getData = async() => {
         try {
-            const res = await axios(baseUrl);
-            if(res.statusText !== "OK"){
+            const res = await axios(url);
+            if(res.status !== 200){
                 throw new Error("Failed to fetch.")
             }else{
                 setLoading(false);
                 setData(res.data);
             }
+            console.log(res)
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -63,7 +65,7 @@ const SingleBook = () => {
             :
             <div className='w-full flex flex-col sm:flex-row items-start justify-between max-sm:gap-5 gap-10'>
                 <div className='w-[40%] max-sm:w-full flex flex-col items-center justify-start gap-5'>
-                    <img src={`${hostUrl}/uploads/${data?.thumbnail}`} alt="" className='h-[400px] max-sm:h-[350px] rounded-xl object-cover'/>
+                    <img src={`${base_url}/uploads/${data?.thumbnail}`} alt="" className='h-[400px] max-sm:h-[350px] rounded-xl object-cover'/>
                     <Link to={`/edit-book/${data.slug}`} className='bg-gray-400 bg-opacity-50 px-4 py-1 rounded-xl font-semibold'>Edit book</Link>
                 </div>
                 <div className='flex-1 w-full mt-4'>

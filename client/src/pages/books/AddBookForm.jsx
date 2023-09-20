@@ -28,6 +28,9 @@ const AddBookForm = () => {
                 setThumbnail(e.target.files[0]);
             }
         }
+
+        const local = "http://localhost:8000"
+        const base_url = "https://book-mern-api.onrender.com"
         
             const handleSubmit = async(e) => {
                 e.preventDefault();
@@ -43,9 +46,9 @@ const AddBookForm = () => {
                 // title, slug, stars, description, thumbnail
                 try {
         
-                    const response = await axios.post('http://localhost:8000/api/books', formData);
+                    const response = await axios.post(`${base_url}/api/books`, formData);
                     
-                    if(response.statusText == "OK"){
+                    if(response.status === 200){
                         setSlug("")
                         setTitle("") 
                         console.log("Added Book!");
