@@ -10,10 +10,11 @@ const SingleBook = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     
+    const serverUrl = import.meta.env.VITE_SERVER_URL;
     const local = 'http://localhost:8000';
     const base_url = 'https://book-mern-api.onrender.com';
     const urlSlug = useParams();
-    const url = `${base_url}/api/book/${urlSlug.slug}`;
+    const url = `${serverUrl}/api/book/${urlSlug.slug}`;
 
     const getData = async() => {
         try {
@@ -65,7 +66,7 @@ const SingleBook = () => {
             :
             <div className='w-full flex flex-col sm:flex-row items-start justify-between max-sm:gap-5 gap-10'>
                 <div className='w-[40%] max-sm:w-full flex flex-col items-center justify-start gap-5'>
-                    <img src={`${base_url}/uploads/${data?.thumbnail}`} alt="" className='h-[400px] max-sm:h-[350px] rounded-xl object-cover'/>
+                    <img src={`${serverUrl}/uploads/${data?.thumbnail}`} alt="" className='h-[400px] max-sm:h-[350px] rounded-xl object-cover'/>
                     <Link to={`/edit-book/${data.slug}`} className='bg-gray-400 bg-opacity-50 px-4 py-1 rounded-xl font-semibold'>Edit book</Link>
                 </div>
                 <div className='flex-1 w-full mt-4'>
