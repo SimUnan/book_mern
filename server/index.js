@@ -12,7 +12,10 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(cors()); 
+app.use(cors({
+    origin: "https://book-mern-api.vercel.app",
+    credentials: true,
+})); 
 app.use("/uploads", express.static("uploads"))
 
 //mongoDB connection
