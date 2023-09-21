@@ -1,14 +1,19 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Logo from '../../public/nanlogo.png'
 
 const Navbar = () => {
     return (
-        <nav className='flex items-center justify-evently mb-2 z-10'>
-            <p className='flex-1 font-bold text-base sm:text-xl'>LOGO</p>
-            <div className='flex text-blue-700 items-center justify-center gap-5 sm:gap-10 text-base sm:text-xl'>
-                <NavLink to='/'>Home</NavLink>
-                <NavLink to='/books'>Books</NavLink>
-                <NavLink to='/about'>About</NavLink>
+        <nav>
+            <div className='flex items-center justify-between z-10 w-full'>
+            <div className='flex sm:ml-10'>  
+                <img src={Logo} alt="" className='w-16 h-16'/>
+            </div>
+                <div className='flex items-center justify-center sm:mr-10  gap-5 sm:gap-10 text-base sm:text-xl text-blue-700'>
+                    <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/books'>Books</NavLink>
+                    <NavLink to='/about'>About</NavLink>
+                </div>
             </div>
         </nav>
     )
