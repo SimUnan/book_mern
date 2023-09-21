@@ -13,7 +13,7 @@ import EditBook from './pages/books/EditBook.jsx'
 const App = () => {
   return (
     <main className='bg-slate-200 my-16 sm:my-32 mx-8 sm:mx-16 p-8 rounded-xl'>
-      <Router basename='/book_mern'>
+      <Router>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />}/>
